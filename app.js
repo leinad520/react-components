@@ -1,25 +1,45 @@
 // TODO
+
+class GroceryListItem extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    render() {
+        return <li onClick={onListItemClick}>{this.props.item}</li>
+    }
+}
+
+var onListItemClick = () => console.log('clicked');
+
+
 var GroceryList = (props) => (
     <ul>
-        <GroceryListItem item={'grapes'} />
-        <GroceryListItem item={'bananna'} />
-        <GroceryListItem item={'pineapple'} />
+        {props.todos.map(todo => 
+            <GroceryListItem item={todo} />    
+        )}
     </ul>
-    )
+    );
 
-    var onListItemClick = () => console.log('clicked');
        
-
-    var GroceryListItem = (props) => (
-        <li onClick={onListItemClick}>{props.item}</li>
-    )
+ReactDOM.render(<GroceryList todos={['grapes', 'bananna', 'pineapple']}/>, document.getElementById('app'));
 
 
+// var GroceryListItem = (props) => (
+//     <li onClick={onListItemClick}>{props.item}</li>
+// ) 
 
-// groceryItems = ['Oranges', 'Carrots', 'Cucumbers'];
+// var GroceryList = (props) => (
+//     <ul>
+//         <GroceryListItem item={'grapes'} />
+//         <GroceryListItem item={'bananna'} />
+//         <GroceryListItem item={'pineapple'} />
+//     </ul>
+//     )
 
-ReactDOM.render(<GroceryList />, document.getElementById('app'));
-
+//     var onListItemClick = () => console.log('clicked');
+       
+// ReactDOM.render(<GroceryList />, document.getElementById('app'));
+// =================================================
 // TODO
 // var GroceryList = (props) => (
 //     <ul>
