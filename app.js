@@ -3,13 +3,35 @@
 class GroceryListItem extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            done: false,
+            hover: false
+        }
     }
+
+    onListItemClick() {
+        this.setState({
+            done: !this.state.done
+        });
+    }
+
+    onListItemHover() {
+        this.setState({
+            hover: !this.state.hover
+        })
+    }
+
     render() {
-        return <li onClick={onListItemClick}>{this.props.item}</li>
+        var style = {
+            textDecoration: this.state.done ? 'line-through' : 'none',
+            fontWeight: this.state.hover ? 'bold' : 'normal'
+        }
+
+        return <li style={style} onClick={this.onListItemClick.bind(this)} onMouseEnter={this.onListItemHover.bind(this)} onMouseLeave={this.onListItemHover.bind(this)}>{this.props.item}</li>
     }
 }
 
-var onListItemClick = () => console.log('clicked');
+// var onListItemClick = () => console.log('clicked');
 
 
 var GroceryList = (props) => (
@@ -23,6 +45,31 @@ var GroceryList = (props) => (
        
 ReactDOM.render(<GroceryList todos={['grapes', 'bananna', 'pineapple']}/>, document.getElementById('app'));
 
+
+// class GroceryListItem extends React.Component {
+//     constructor(props) {
+//         super(props)
+//     }
+//     render() {
+//         return <li onClick={onListItemClick}>{this.props.item}</li>
+//     }
+// }
+
+// var onListItemClick = () => console.log('clicked');
+
+
+// var GroceryList = (props) => (
+//     <ul>
+//         {props.todos.map(todo => 
+//             <GroceryListItem item={todo} />    
+//         )}
+//     </ul>
+//     );
+
+       
+// ReactDOM.render(<GroceryList todos={['grapes', 'bananna', 'pineapple']}/>, document.getElementById('app'));
+
+// ============================================
 
 // var GroceryListItem = (props) => (
 //     <li onClick={onListItemClick}>{props.item}</li>
